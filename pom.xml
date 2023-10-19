@@ -3,8 +3,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>maximum.automation</groupId>
-  <artifactId>selenium-junit</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <artifactId>selenium-cucumber-testng</artifactId>
+  <version>1.0.0</version>
   
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
@@ -12,31 +12,35 @@
   </properties>
   
   <dependencies>
+    <!-- Cucumber Dependencies -->
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
-      <version>1.2.5</version>
+      <version>6.8.1</version>
     </dependency>
 		
     <dependency>
       <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-junit</artifactId>
+      <artifactId>cucumber-testng</artifactId>
       <version>6.8.1</version>
       <scope>test</scope>
     </dependency>
 		
+    <!-- Selenium Dependency -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>3.141.59</version>
     </dependency>
 				
+    <!-- Cucumber Runner Dependency -->
     <dependency>
       <groupId>com.github.mkolisnyk</groupId>
       <artifactId>cucumber-runner</artifactId>
       <version>1.3.5</version>
     </dependency>
 		
+    <!-- JUnit Dependency -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -44,42 +48,34 @@
       <scope>test</scope>
     </dependency>
 		
+    <!-- Extent Reports Dependency -->
     <dependency>
       <groupId>com.aventstack</groupId>
       <artifactId>extentreports</artifactId>
       <version>5.0.5</version>
     </dependency>
 		
+    <!-- Cucumber Reporting Dependency -->
     <dependency>
       <groupId>net.masterthought</groupId>
       <artifactId>cucumber-reporting</artifactId>
       <version>5.3.1</version>
     </dependency>
 		
+    <!-- WebDriver Manager Dependency -->
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
       <version>4.2.2</version>
       <scope>test</scope>
     </dependency>
-		
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java</artifactId>
-      <version>6.8.1</version>
-    </dependency>
     
+    <!-- TestNG Dependency -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.1.0</version>
       <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-testng</artifactId>
-      <version>6.8.1</version>
     </dependency>
   </dependencies>
   
@@ -101,7 +97,7 @@
         <version>3.0.0-M5</version>
         <configuration>
           <includes>
-            <include>**/runner.class</include>
+            <include>com/example/tests/*Test.java</include>
           </includes>
         </configuration>
       </plugin>
@@ -119,10 +115,10 @@
             </goals>
             <configuration>
               <projectName>maximumautomation</projectName>
-              <outputDirectory>${project.build.directory}</outputDirectory>
+              <outputDirectory>${project.build.directory}/cucumber-report</outputDirectory>
               <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
               <jsonFiles>
-                <param>**/*.json</param>
+                <param>**/cucumber.json</param>
               </jsonFiles>
             </configuration>
           </execution>
@@ -142,7 +138,7 @@
             </goals>
             <configuration>
               <sources>
-                <source>Source</source>
+                <source>src/test/java</source>
               </sources>
             </configuration>
           </execution>
@@ -151,3 +147,4 @@
     </plugins>
   </build>
 </project>
+
